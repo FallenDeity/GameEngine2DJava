@@ -32,6 +32,7 @@ public abstract class Scene {
 	private final List<GameObject> pendingGameObjects = new ArrayList<>();
 	private final String storePath = "%s/scenes".formatted(CONSTANTS.RESOURCE_PATH.getValue());
 	private boolean isRunning = false;
+
 	protected Scene() {
 		load();
 		for (GameObject g : gameObjects) {
@@ -48,7 +49,7 @@ public abstract class Scene {
 		}
 		camera = new Camera(new Vector2f());
 		physics2D = new Physics2D();
-	}	private String defaultScene = Window.getScene() == null ? "default" : Window.getScene().getDefaultScene();
+	}
 
 	public static GameObject createGameObject(String name) {
 		GameObject gameObject = new GameObject(name);
@@ -65,7 +66,7 @@ public abstract class Scene {
 			renderer.add(gameObject);
 			physics2D.add(gameObject);
 		}
-	}
+	}	private String defaultScene = Window.getScene() == null ? "default" : Window.getScene().getDefaultScene();
 
 	public final void addGameObjectToScene(GameObject gameObject) {
 		if (isRunning) {

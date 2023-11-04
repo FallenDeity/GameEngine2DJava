@@ -1,6 +1,7 @@
 package engine.components;
 
 import engine.physics2d.components.RigidBody2D;
+import engine.ruby.Window;
 import engine.util.AssetPool;
 import engine.util.CONSTANTS;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -26,6 +27,7 @@ public class Flower extends Component {
 		if (player != null) {
 			if (player.isFire()) {
 				AssetPool.getSound(CONSTANTS.SOUNDS_PATH.getValue() + "coin.ogg").play();
+				Window.getLevelScene().coins += 10;
 			} else {
 				player.addPowerUp(this);
 			}

@@ -12,6 +12,7 @@ import engine.scenes.Scene;
 import engine.scenes.Scenes;
 import engine.util.AssetPool;
 import engine.util.CONSTANTS;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -43,6 +44,7 @@ public class Window implements Observer {
 	private static Window instance = null;
 	private static Scene currentScene = null;
 	private static ImGuiLayer imGuiLayer = null;
+	private static FontRenderer fontRenderer = null;
 	private long glfwWindow, audioDevice, audioContext;
 	private FrameBuffer frameBuffer;
 	private Picker picker;
@@ -63,6 +65,10 @@ public class Window implements Observer {
 
 	public static Scene getScene() {
 		return currentScene;
+	}
+
+	public static LevelScene getLevelScene() {
+		return (LevelScene) currentScene;
 	}
 
 	public static void changeScene(Scenes type) {
@@ -192,6 +198,7 @@ public class Window implements Observer {
 		imGuiLayer = new ImGuiLayer(glfwWindow, picker);
 		imGuiLayer.initImGui();
 		changeScene(Scenes.LEVEL_EDITOR);
+		fontRenderer = new FontRenderer();
 	}
 
 	public void loop() {
@@ -225,6 +232,12 @@ public class Window implements Observer {
 					currentScene.editorUpdate((float) dt);
 				}
 				currentScene.render();
+				if (runtimePlaying) {
+					String coins = String.format("Coins %03d", getLevelScene().coins);
+					float x = getScene().getCamera().getPosition().x + 5.0f;
+					float y = getScene().getCamera().getPosition().y + 2.75f;
+					fontRenderer.write(coins, x, y, 0.0025f, new Vector3f(1));
+				}
 				DebugDraw.draw();
 			}
 			frameBuffer.unbind();

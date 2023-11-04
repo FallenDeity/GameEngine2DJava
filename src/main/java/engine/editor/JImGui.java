@@ -334,4 +334,31 @@ public class JImGui {
 
 		return value;
 	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Enum<T>> T comboEnum(String name, Enum<T> value) {
+		ImGui.pushID(name);
+
+		ImGui.columns(2);
+		ImGui.setColumnWidth(0, 220.0f);
+		ImGui.text(name);
+		ImGui.nextColumn();
+
+		String[] enumValues = new String[value.getClass().getEnumConstants().length];
+		ImInt index = new ImInt(0);
+		for (int i = 0; i < value.getClass().getEnumConstants().length; i++) {
+			enumValues[i] = value.getClass().getEnumConstants()[i].toString();
+			if (enumValues[i].equals(value.toString())) {
+				index.set(i);
+			}
+		}
+		if (ImGui.combo("##" + name, index, enumValues)) {
+			value = (T) value.getClass().getEnumConstants()[index.get()];
+		}
+		ImGui.columns(1);
+		ImGui.dummy(0.0f, 1.0f);
+		ImGui.popID();
+
+		return (T) value;
+	}
 }

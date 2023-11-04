@@ -42,6 +42,7 @@ public class MushroomAI extends Component {
 				if (player.isSmall()) {
 					player.addPowerUp(this);
 				} else {
+					Window.getLevelScene().coins += 3;
 					AssetPool.getSound(CONSTANTS.SOUNDS_PATH.getValue() + "coin.ogg").play();
 				}
 				isHit = true;

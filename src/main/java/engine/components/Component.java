@@ -1,8 +1,6 @@
 package engine.components;
 
 import engine.editor.JImGui;
-import imgui.ImGui;
-import imgui.type.ImInt;
 import imgui.type.ImString;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.joml.Vector2f;
@@ -78,17 +76,7 @@ public abstract class Component {
 					Vector2f val = (Vector2f) value;
 					JImGui.drawVec2Control(name, val);
 				} else if (type.isEnum()) {
-					String[] enumValues = new String[type.getEnumConstants().length];
-					ImInt index = new ImInt(0);
-					for (int i = 0; i < type.getEnumConstants().length; i++) {
-						enumValues[i] = type.getEnumConstants()[i].toString();
-						if (enumValues[i].equals(value.toString())) {
-							index.set(i);
-						}
-					}
-					if (ImGui.combo(name, index, enumValues)) {
-						field.set(this, type.getEnumConstants()[index.get()]);
-					}
+					field.set(this, JImGui.comboEnum(name, (Enum<?>) value));
 				}
 				if (isPrivate) {
 					field.setAccessible(false);

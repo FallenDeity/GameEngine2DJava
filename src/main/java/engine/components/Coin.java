@@ -1,5 +1,6 @@
 package engine.components;
 
+import engine.ruby.Window;
 import engine.util.AssetPool;
 import engine.util.CONSTANTS;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -21,6 +22,7 @@ public class Coin extends Component {
 				this.gameObject.transform.getPosition().add(0, 1.4f * dt);
 				this.gameObject.transform.getScale().sub((0.5f * dt) % -1.0f, 0.0f);
 			} else {
+				Window.getLevelScene().coins++;
 				gameObject.destroy();
 			}
 		}

@@ -1,11 +1,17 @@
 package engine.components;
 
+import engine.ruby.Window;
 import engine.util.AssetPool;
 import engine.util.CONSTANTS;
 import org.joml.Vector2f;
 
 public class CoinBlock extends Component {
+	private final int amount;
 	private Vector2f topY;
+
+	public CoinBlock(int amount) {
+		this.amount = amount;
+	}
 
 	@Override
 	public void update(float dt) {
@@ -21,5 +27,6 @@ public class CoinBlock extends Component {
 	public void start() {
 		topY = new Vector2f(getGameObject().transform.getPosition()).add(0, 0.5f);
 		AssetPool.getSound(CONSTANTS.SOUNDS_PATH.getValue() + "coin.ogg").play();
+		Window.getLevelScene().coins += amount;
 	}
 }

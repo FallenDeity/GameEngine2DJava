@@ -6,6 +6,7 @@ import engine.util.AssetPool;
 import engine.util.CONSTANTS;
 
 public class LevelScene extends Scene {
+	public int coins = 0;
 
 	public LevelScene() {
 		GameObject gameUtils = new GameObject("GameUtils");

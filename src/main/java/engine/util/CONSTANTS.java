@@ -17,6 +17,7 @@ public enum CONSTANTS {
 	ITEM_SHEET_PATH("assets/textures/sprites/items.png"),
 	BLOCK_SHEET_PATH("assets/textures/sprites/blocks.png"),
 	SPRITE_SHEET_PATH("assets/textures/sprites/spritesheet.png"),
+	FONT_SHADER_PATH("assets/shaders/font.glsl"),
 	PICKER_SHADER_PATH("assets/shaders/picker.glsl"),
 	DEFAULT_SHADER_PATH("assets/shaders/default.glsl"),
 	LINE2D_SHADER_PATH("assets/shaders/line2d.glsl");

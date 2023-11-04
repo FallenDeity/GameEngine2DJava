@@ -6,6 +6,7 @@ import engine.renderer.Sound;
 import engine.renderer.Texture;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +35,16 @@ public class AssetPool {
 			return textures.get(name);
 		}
 		Texture texture = new Texture().loadTexture(path);
+		textures.put(name, texture);
+		return texture;
+	}
+
+	public static Texture getTexture(String name, ByteBuffer image, int width, int height, int channels) {
+		if (textures.containsKey(name)) {
+			return textures.get(name);
+		}
+		Texture texture = new Texture();
+		texture.loadTexture(image, width, height, channels);
 		textures.put(name, texture);
 		return texture;
 	}

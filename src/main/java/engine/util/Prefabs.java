@@ -220,7 +220,6 @@ public class Prefabs {
 		sm.setDefaultState(coinFlip.name);
 		obj.addComponent(sm);
 		obj.addComponent(new QuestionBlock());
-		obj.addComponent(new CoinBlock());
 		return obj;
 	}
 
