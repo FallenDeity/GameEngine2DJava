@@ -141,7 +141,7 @@ public class Window implements Observer {
 		}
 		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
 		glfwWindow = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (glfwWindow == NULL) {
