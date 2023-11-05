@@ -1,5 +1,7 @@
 # 2D Game Engine (Java)
 
+![image](https://github.com/FallenDeity/GameEngine2DJava/assets/61227305/e58294e8-824d-47d1-9acd-a9528cf53119)
+
 ## Description
 
 This is a 2D game engine written in Java from scratch. The engine uses `ljwgl` for graphics and interfacing with OpenGL to render the game.
