@@ -99,7 +99,7 @@ public class PlayerController extends Component {
 			return;
 		}
 		if (Window.getInstance().getTimer() <= 0.0f) {
-			// die();
+			die();
 		}
 		if ((gameObject.transform.getPosition().y < -5.0f && travelledPipe) || (gameObject.transform.getPosition().y < -0.5f && !travelledPipe)) {
 			die();
