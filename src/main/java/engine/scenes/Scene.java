@@ -66,7 +66,7 @@ public abstract class Scene {
 			renderer.add(gameObject);
 			physics2D.add(gameObject);
 		}
-	}	private String defaultScene = Window.getScene() == null ? "default" : Window.getScene().getDefaultScene();
+	}
 
 	public final void addGameObjectToScene(GameObject gameObject) {
 		if (isRunning) {
@@ -78,7 +78,7 @@ public abstract class Scene {
 
 	public final void destroy() {
 		gameObjects.forEach(GameObject::destroy);
-	}
+	}	private String defaultScene = Window.getScene() == null ? "default" : Window.getScene().getDefaultScene();
 
 	public void update(float dt) {
 		camera.adjustProjectionMatrix();

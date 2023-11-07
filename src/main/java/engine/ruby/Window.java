@@ -50,6 +50,7 @@ public class Window implements Observer {
 	private Picker picker;
 	private GameObject currentGameObject = null;
 	private boolean runtimePlaying = false;
+	private double timer = 0;
 
 	private Window() {
 		EventSystem.getInstance().addObserver(this);
@@ -81,8 +82,12 @@ public class Window implements Observer {
 				getInstance().runtimePlaying = false;
 				getImGuiLayer().getGameViewWindow().setPlaying(false);
 				currentScene = new LevelEditorScene();
+				getInstance().timer = 0;
 			}
-			case LEVEL_SCENE -> currentScene = new LevelScene();
+			case LEVEL_SCENE -> {
+				currentScene = new LevelScene();
+				getInstance().timer = 180;
+			}
 			default -> {
 				assert false : "Unknown scene '" + type + "'";
 			}
@@ -132,6 +137,10 @@ public class Window implements Observer {
 
 	public static Physics2D getPhysics2D() {
 		return currentScene.getPhysics2D();
+	}
+
+	public double getTimer() {
+		return timer;
 	}
 
 	private void init() {
@@ -233,10 +242,12 @@ public class Window implements Observer {
 				}
 				currentScene.render();
 				if (runtimePlaying) {
-					String coins = String.format("Coins %03d", getLevelScene().coins);
+					timer -= dt;
 					float x = getScene().getCamera().getPosition().x + 5.0f;
 					float y = getScene().getCamera().getPosition().y + 2.75f;
-					fontRenderer.write(coins, x, y, 0.0025f, new Vector3f(1));
+					fontRenderer.write(String.format("Timer %03d", Math.max((int) timer, 0)), x - 5.0f + 0.1f, y, 0.0025f, new Vector3f(1));
+					String coins = String.format("x %03d", getLevelScene().coins);
+					fontRenderer.write(coins, x + 0.4f, y, 0.0025f, new Vector3f(1));
 				}
 				DebugDraw.draw();
 			}

@@ -66,7 +66,7 @@ public class PillboxCollider extends Collider {
 	}
 
 	public void process() {
-		float radius = (width / 2.0f) + 0.01f, boxHeight = height - radius;
+		float radius = (width / 2.0f), boxHeight = height - radius;
 		bottomCircle.setRadius(radius);
 		bottomCircle.setOffset(new Vector2f(offset).sub(0, (height - radius * 2.0f) / 2.0f));
 		box.setHalfSize(new Vector2f(width - 0.01f, boxHeight));

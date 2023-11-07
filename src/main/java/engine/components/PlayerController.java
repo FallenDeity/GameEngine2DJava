@@ -98,6 +98,9 @@ public class PlayerController extends Component {
 			}
 			return;
 		}
+		if (Window.getInstance().getTimer() <= 0.0f) {
+			// die();
+		}
 		if ((gameObject.transform.getPosition().y < -5.0f && travelledPipe) || (gameObject.transform.getPosition().y < -0.5f && !travelledPipe)) {
 			die();
 		}
@@ -239,6 +242,8 @@ public class PlayerController extends Component {
 			jumpBoost *= bigJumpBoost;
 			walkSpeed *= bigJumpBoost;
 			collider.setHeight(0.42f);
+			collider.setWidth(0.25f);
+			collider.getBottomCircle().setRadius(collider.getBottomCircle().getRadius() * bigJumpBoost);
 		}
 	}
 
@@ -309,6 +314,7 @@ public class PlayerController extends Component {
 					jumpBoost /= bigJumpBoost;
 					walkSpeed /= bigJumpBoost;
 					collider.setHeight(0.25f);
+					collider.setWidth(0.21f);
 				}
 				invincibleTime += hurtInvincibleTime;
 				AssetPool.getSound(CONSTANTS.SOUNDS_PATH.getValue() + "pipe.ogg").play();
